@@ -1,0 +1,8 @@
+.elements-in-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 2.5%;
+}

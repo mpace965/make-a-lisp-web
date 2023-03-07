@@ -1,0 +1,27 @@
+.container-outline-unfocused {
+  outline: 1.5px solid lightgray;
+  border-radius: 0.5rem;
+
+  transition: outline-color 0.125s ease-out;
+}
+
+.container-outline-focused {
+  outline: 1.5px solid black;
+  border-radius: 0.5rem;
+
+  transition: outline-color 0.125s ease-out;
+}
+
+body * {
+  outline: 1.5px solid transparent;
+  border-radius: 0.5rem;
+
+  transition: outline-color 0.125s ease-out;
+}
+
+:focus {
+  outline: 1.5px solid cornflowerblue;
+  border-radius: 0.5rem;
+
+  transition: outline-color 0.125s ease-out;
+}
