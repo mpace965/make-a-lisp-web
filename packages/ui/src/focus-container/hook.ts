@@ -5,7 +5,7 @@ import {
   getElementFromPath,
   getNthChildElement,
   getPathFromElementData,
-} from "../../path";
+} from "../path";
 
 /*
  * Container refers to the element being outlined in black.

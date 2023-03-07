@@ -6,11 +6,11 @@ import {
   FocusContainerContext,
   getFocusContainerClass,
   getTabIndex,
-} from "../focus";
+} from "../focus-container";
 import { Node, NodeProps } from "./Node";
 
 import "./VectorNode.css";
-import "../focus/style.css";
+import "../focus-container/style.css";
 
 export const VectorNode = ({ node, path }: NodeProps<ASTVector>) => {
   const focusContainerContext = useContext(FocusContainerContext);

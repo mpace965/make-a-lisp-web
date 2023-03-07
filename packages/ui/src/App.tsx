@@ -9,11 +9,11 @@ import {
   getFocusContainerClass,
   getTabIndex,
   useFocusContainer,
-} from "./focus";
+} from "./focus-container";
 import { Node } from "./node/Node";
 
 import "./App.css";
-import "./focus/style.css";
+import "./focus-container/style.css";
 
 const ROOT_PATH: List<number> = List();
 const EXPRESSION_PATH = ROOT_PATH.push(0);

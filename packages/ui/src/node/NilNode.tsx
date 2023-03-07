@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ASTNil } from "language-syntax";
 
-import { FocusContainerContext, getTabIndex } from "../focus";
+import { FocusContainerContext, getTabIndex } from "../focus-container";
 import { NodeProps } from "./Node";
 
 import "./PrimitiveNode.css";

@@ -6,11 +6,11 @@ import {
   FocusContainerContext,
   getFocusContainerClass,
   getTabIndex,
-} from "../focus";
+} from "../focus-container";
 import { Node, NodeProps } from "./Node";
 
 import "./HashMapNode.css";
-import "../focus/style.css";
+import "../focus-container/style.css";
 
 export const HashMapNode = ({ node, path }: NodeProps<ASTHashMap>) => {
   const focusContainerContext = useContext(FocusContainerContext);
