@@ -6,6 +6,22 @@ export function getElementFromPath(path: List<number>): HTMLElement | null {
   );
 }
 
+export function getFocusedElementWithPath() {
+  const element = document.activeElement as HTMLElement | null;
+
+  if (element === null) {
+    return;
+  }
+
+  const path = getPathFromElementData(element);
+
+  if (path === undefined) {
+    return;
+  }
+
+  return { element, path };
+}
+
 export function getPathFromElementData(
   element: HTMLElement
 ): List<number> | undefined {

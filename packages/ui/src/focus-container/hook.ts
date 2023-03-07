@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { defaultContext, FocusContainerContextProps } from "./context";
 import {
   getElementFromPath,
+  getFocusedElementWithPath,
   getNthChildElement,
-  getPathFromElementData,
 } from "../path";
 
 /*
@@ -34,22 +34,18 @@ export function useFocusContainer(
     const newContainer = (() => {
       // navigate down
       if (key === "ArrowDown") {
-        const focusedElement = document.activeElement as HTMLElement | null;
+        const result = getFocusedElementWithPath();
 
-        if (focusedElement === null) {
+        if (result === undefined) {
           return;
         }
 
-        const focusedElementPath = getPathFromElementData(focusedElement);
-
-        if (focusedElementPath === undefined) {
-          return;
-        }
+        const { path } = result;
 
         return {
-          path: focusedElementPath,
-          direction: "down",
-        } as const;
+          path,
+          direction: "down" as const,
+        };
       }
 
       // navigate up
@@ -58,8 +54,8 @@ export function useFocusContainer(
 
         return {
           path: parentPath,
-          direction: "up",
-        } as const;
+          direction: "up" as const,
+        };
       }
     })();
 
