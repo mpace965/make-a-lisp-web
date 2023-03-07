@@ -1,7 +1,7 @@
-import React from "react";
+import { createContext } from "react";
 import { List } from "immutable";
 
-export interface FocusContainerContextProps {
+export interface FocusContainerState {
   path: List<number>;
   previousPath?: List<number>;
 
@@ -9,11 +9,11 @@ export interface FocusContainerContextProps {
   previousNavigationDirection?: NavigationDirection;
 }
 
-export const defaultContext: FocusContainerContextProps = {
+export const defaultContext: FocusContainerState = {
   path: List(),
 };
 
 export const FocusContainerContext =
-  React.createContext<FocusContainerContextProps>(defaultContext);
+  createContext<FocusContainerState>(defaultContext);
 
 export type NavigationDirection = "up" | "down";

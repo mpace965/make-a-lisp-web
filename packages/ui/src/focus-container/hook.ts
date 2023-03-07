@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { defaultContext, FocusContainerContextProps } from "./context";
+import { defaultContext, FocusContainerState } from "./context";
 import {
   getElementFromPath,
   getFocusedElementWithPath,
@@ -21,14 +21,14 @@ import {
  *    (making it the new container)
  */
 export function useFocusContainer(
-  _initialState: Partial<FocusContainerContextProps> = {}
-): FocusContainerContextProps {
-  const initialState: FocusContainerContextProps = {
+  _initialState: Partial<FocusContainerState> = {}
+): FocusContainerState {
+  const initialState: FocusContainerState = {
     ...defaultContext,
     ..._initialState,
   };
   const [focusContainerContext, setFocusContainerContext] =
-    useState<FocusContainerContextProps>(initialState);
+    useState<FocusContainerState>(initialState);
 
   const focusOnContainer = ({ key }: KeyboardEvent) => {
     const newContainer = (() => {
