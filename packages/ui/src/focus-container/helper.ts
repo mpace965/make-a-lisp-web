@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { List } from "immutable";
 
-import { FocusContainerState } from "./context";
+import { FocusContainer } from "./context";
 
 /* the inputPath is focusable (has a tabIndex of 0) if it is
  * a direct child of the containerPath, meaning their paths share
@@ -9,7 +9,7 @@ import { FocusContainerState } from "./context";
  */
 export function getTabIndex(
   inputPath: List<number>,
-  { path }: FocusContainerState
+  { path }: FocusContainer
 ): 0 | undefined {
   if (path.equals(inputPath.butLast())) {
     return 0;
@@ -18,7 +18,7 @@ export function getTabIndex(
 
 export function getFocusContainerClass(
   inputPath: List<number>,
-  { path }: FocusContainerState
+  { path }: FocusContainer
 ): string {
   const isFocusContainer = inputPath.equals(path);
   return classNames(

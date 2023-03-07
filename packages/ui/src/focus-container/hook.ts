@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { defaultContext, FocusContainerState } from "./context";
+import { defaultContext, FocusContainer } from "./context";
 import {
   getElementFromPath,
   getFocusedElementWithPath,
@@ -21,14 +21,14 @@ import {
  *    (making it the new container)
  */
 export function useFocusContainer(
-  _initialState: Partial<FocusContainerState> = {}
-): FocusContainerState {
-  const initialState: FocusContainerState = {
+  _initialState: Partial<FocusContainer> = {}
+): FocusContainer {
+  const initialState: FocusContainer = {
     ...defaultContext,
     ..._initialState,
   };
   const [focusContainerContext, setFocusContainerContext] =
-    useState<FocusContainerState>(initialState);
+    useState<FocusContainer>(initialState);
 
   const focusOnContainer = ({ key }: KeyboardEvent) => {
     const newContainer = (() => {
@@ -71,8 +71,10 @@ export function useFocusContainer(
 
     setFocusContainerContext({
       path: newContainer.path,
-      previousPath: focusContainerContext.path,
-      previousNavigationDirection: newContainer.direction,
+      previousContainer: {
+        path: focusContainerContext.path,
+        navigationDirection: newContainer.direction,
+      },
     });
   };
 
@@ -85,22 +87,18 @@ export function useFocusContainer(
   }, [focusOnContainer]);
 
   useEffect(() => {
-    const {
-      path: containerPath,
-      previousPath: previousContainerPath,
-      previousNavigationDirection,
-    } = focusContainerContext;
+    const { path, previousContainer } = focusContainerContext;
 
     if (
-      previousContainerPath === undefined ||
-      previousNavigationDirection === "down"
+      previousContainer === undefined ||
+      previousContainer.navigationDirection === "down"
     ) {
-      getNthChildElement(containerPath, 0)?.focus();
+      getNthChildElement(path, 0)?.focus();
       return;
     }
 
-    if (previousNavigationDirection === "up") {
-      getElementFromPath(previousContainerPath)?.focus();
+    if (previousContainer.navigationDirection === "up") {
+      getElementFromPath(previousContainer.path)?.focus();
       return;
     }
   }, [focusContainerContext]);
